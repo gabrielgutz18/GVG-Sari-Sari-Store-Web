@@ -1,0 +1,171 @@
+
+/* Header Styles */
+.header-wrapper {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-logo-section {
+  flex: 1;
+}
+
+.header-logo {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #111;
+}
+
+.header-logo-dot {
+  color: #e63946;
+}
+
+.header-nav {
+  display: flex;
+  gap: 30px;
+  flex: 1;
+  justify-content: center;
+}
+
+.header-nav a {
+  color: #555;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.2s ease;
+}
+
+.header-nav a:hover {
+  color: #111;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.header-search {
+  display: flex;
+  align-items: center;
+  background-color: #f4f4f5;
+  border-radius: 20px;
+  padding: 8px 16px;
+}
+
+.header-search svg {
+  margin-right: 8px;
+}
+
+.header-search input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 14px;
+  color: #333;
+  width: 120px;
+}
+
+.header-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 16px;
+  padding: 0;
+}
+
+.header-menu-btn span {
+  width: 20px;
+  height: 2px;
+  background-color: #333;
+  border-radius: 2px;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  background-image: url('./assets/her-food.webp');
+  background-size: cover;
+  background-position: center;
+  padding: 140px 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Glassmorphism & Theme Color Overlay */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  /* Mixes a dark elegant tone with a hint of your red brand accent */
+  background: linear-gradient(135deg, rgba(17, 17, 17, 0.8) 0%, rgba(230, 57, 70, 0.4) 100%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); /* Safari support */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  line-height: 1.6;
+  max-width: 650px;
+  margin-inline: auto;
+}
+
+.hero-btn {
+  background-color: #e63946;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(230, 57, 70, 0.3);
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  background-color: #d62828;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+}
