@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@source "../index.html";
+@source "./**/*.{js,jsx,ts,tsx}";
+
+/* ---------------------------------------------------------------------------
+   Design tokens -- Flat / Swiss-minimal, grocery palette.
+   Brand red keeps the store's existing identity; green is reserved strictly
+   for "this is in your cart" and other success states so the two never
+   compete. Every text pair below clears WCAG AA (4.5:1) on its background.
+   --------------------------------------------------------------------------- */
+@theme {
+  --font-display: 'Fredoka', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Nunito', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-brand: #c81e1e;        /* 5.9:1 on white */
+  --color-brand-dark: #a11616;
+  --color-brand-soft: #fef2f2;
+  --color-brand-line: #f6d5d5;
+
+  --color-fresh: #15803d;        /* 5.1:1 on white -- success / in cart */
+  --color-fresh-soft: #f0fdf4;
+  --color-fresh-line: #bbf7d0;
+
+  --color-gold: #a16207;         /* 5.1:1 on white -- prices */
+
+  --color-ink: #1c1917;          /* body text */
+  --color-ink-soft: #57534e;     /* 7.4:1 on white -- secondary text */
+  --color-line: #e7e5e4;
+  --color-canvas: #faf9f7;
+  --color-surface: #ffffff;
+}
+
+/* ---------------------------------------------------------------------------
+   Base element styles.
+
+   These MUST live inside `@layer base`. Unlayered CSS wins over anything in a
+   layer, so leaving `button { color: inherit }` outside a layer would beat
+   `.text-white` (which Tailwind puts in `@layer utilities`) and silently paint
+   every button's label with the inherited body colour instead.
+   --------------------------------------------------------------------------- */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Sticky header (64px) + category bar (56px) so anchors are never hidden. */
+    scroll-padding-top: 8.5rem;
+  }
+
+  body {
+    min-width: 320px;
+    margin: 0;
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  button, input, select, textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* One visible focus ring for the whole app -- never removed, only restyled. */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* Respect the OS "reduce motion" setting. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Cross-fade when the New Arrivals panel switches item. The reduced-motion
+   block above already disables this, so no separate guard is needed. */
+@keyframes gvg-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: gvg-fade-in 220ms ease-out both;
+}
+
+/* Hide the horizontal scrollbar on the category bar without disabling scroll. */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
